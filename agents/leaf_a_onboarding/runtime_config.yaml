@@ -1,0 +1,8 @@
+session_isolation: true
+max_tool_calls_per_session: 15
+timeout_seconds: 90
+model_id: anthropic.claude-3-sonnet
+agent_role: leaf_a_onboarding
+allowed_tools:
+  - crm.create_account
+  - crm.update_account

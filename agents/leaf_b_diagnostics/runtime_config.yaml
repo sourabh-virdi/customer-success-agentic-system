@@ -1,0 +1,8 @@
+session_isolation: true
+max_tool_calls_per_session: 15
+timeout_seconds: 90
+model_id: anthropic.claude-3-sonnet
+agent_role: leaf_b_diagnostics
+allowed_tools:
+  - diagnostics.run
+  - diagnostics.get_report
