@@ -1,0 +1,10 @@
+session_isolation: true
+max_tool_calls_per_session: 20
+timeout_seconds: 120
+model_id: anthropic.claude-3-sonnet
+agent_role: supervisor
+allowed_leaf_agents:
+  - leaf_a_onboarding
+  - leaf_b_diagnostics
+  - leaf_c_retention
+safe_mode_enabled: true
