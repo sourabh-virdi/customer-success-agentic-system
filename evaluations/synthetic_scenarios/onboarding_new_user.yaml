@@ -1,0 +1,10 @@
+name: onboarding_new_user
+description: New user completes onboarding flow
+user_input: "I need help setting up my new account"
+expected_intent: onboarding
+expected_leaf: leaf_a
+expected_tools:
+  - crm.create_account
+success_criteria:
+  resolution_rate_min: 0.8
+  tool_success: true

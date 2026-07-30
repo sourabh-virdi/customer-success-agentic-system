@@ -1,0 +1,9 @@
+# Memory retention policies (configurable per tenant)
+session_days: 30
+profile_days: 365
+transcript_days: 365
+logs_days: 90
+traces_days: 30
+
+# Data residency default region
+default_region: us-east-1

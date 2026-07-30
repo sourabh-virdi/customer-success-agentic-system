@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UserProfile",
+  "type": "object",
+  "required": ["id", "type", "company", "plan"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^user:"},
+    "type": {"const": "profile"},
+    "company": {"type": "string"},
+    "plan": {"type": "string"},
+    "integrations": {"type": "array", "items": {"type": "string"}},
+    "preferences": {"type": "object"},
+    "churn_score": {"type": "number", "minimum": 0, "maximum": 1},
+    "last_activity": {"type": "string", "format": "date-time"},
+    "consent": {"type": "boolean"},
+    "purpose": {"type": "string"},
+    "redaction_mask": {"type": "array", "items": {"type": "string"}}
+  }
+}

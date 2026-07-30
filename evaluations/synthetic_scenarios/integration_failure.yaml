@@ -1,0 +1,10 @@
+name: integration_failure
+description: Leaf B diagnostics detects webhook failure and proposes remediation
+user_input: "My slack integration int-fail-123 is not working"
+expected_intent: diagnostics
+expected_leaf: leaf_b
+expected_tools:
+  - diagnostics.run
+success_criteria:
+  remediation_provided: true
+  memory_artifact_written: true

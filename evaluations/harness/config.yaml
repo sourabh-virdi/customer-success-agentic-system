@@ -1,0 +1,6 @@
+thresholds:
+  correctness_min: 4.0
+  hallucination_rate_max: 0.02
+  escalation_appropriateness_min: 0.90
+  resolution_rate_min: 0.80
+  human_sample_rate: 0.01

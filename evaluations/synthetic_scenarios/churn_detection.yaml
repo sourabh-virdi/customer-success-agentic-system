@@ -1,0 +1,10 @@
+name: churn_detection
+description: Leaf C detects high churn and proposes retention offer
+user_input: "I want to cancel my enterprise subscription"
+expected_intent: retention
+expected_leaf: leaf_c
+expected_tools:
+  - billing.get_subscription
+success_criteria:
+  offer_proposed: true
+  ticket_if_high_churn: true

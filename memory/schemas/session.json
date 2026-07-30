@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SessionMemory",
+  "type": "object",
+  "required": ["id", "type", "user_id", "turns", "last_updated"],
+  "properties": {
+    "id": {"type": "string", "pattern": "^session:"},
+    "type": {"const": "session"},
+    "user_id": {"type": "string"},
+    "turns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["role", "text", "timestamp"],
+        "properties": {
+          "role": {"enum": ["user", "agent"]},
+          "text": {"type": "string"},
+          "timestamp": {"type": "string", "format": "date-time"}
+        }
+      }
+    },
+    "last_updated": {"type": "string", "format": "date-time"},
+    "redaction_mask": {"type": "array", "items": {"type": "string"}},
+    "consent": {"type": "boolean"},
+    "purpose": {"type": "string"}
+  }
+}
