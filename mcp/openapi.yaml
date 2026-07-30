@@ -1,0 +1,126 @@
+openapi: 3.1.0
+info:
+  title: Customer Success MCP Server API
+  version: 0.1.0
+  description: Tool registry, auth exchange, and policy-enforced tool calls
+servers:
+  - url: http://localhost:8000
+paths:
+  /tools/register:
+    post:
+      summary: Register tool metadata
+      operationId: registerTool
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ToolRegistration'
+      responses:
+        '200':
+          description: Tool registered
+  /tools:
+    get:
+      summary: List available tools
+      operationId: listTools
+      responses:
+        '200':
+          description: Tool list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tools:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ToolRegistration'
+  /call:
+    post:
+      summary: Invoke a tool
+      operationId: callTool
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ToolCallRequest'
+      responses:
+        '200':
+          description: Tool result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ToolCallResponse'
+  /auth/exchange:
+    post:
+      summary: Exchange agent identity for backend token
+      operationId: exchangeToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthExchangeRequest'
+      responses:
+        '200':
+          description: Token issued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthExchangeResponse'
+  /metrics:
+    get:
+      summary: Prometheus metrics
+      operationId: getMetrics
+      responses:
+        '200':
+          description: Metrics
+components:
+  schemas:
+    ToolRegistration:
+      type: object
+      required: [name, input_schema, output_schema, auth_scope]
+      properties:
+        name: {type: string}
+        input_schema: {type: object}
+        output_schema: {type: object}
+        auth_scope: {type: string}
+        rate_limit: {type: object}
+        error_codes: {type: array, items: {type: string}}
+        sensitive_fields: {type: array, items: {type: string}}
+    ToolCallRequest:
+      type: object
+      required: [tool_name, input, agent_identity, session_id]
+      properties:
+        tool_name: {type: string}
+        input: {type: object}
+        agent_identity: {type: string}
+        session_id: {type: string}
+    ToolCallResponse:
+      type: object
+      properties:
+        status: {type: string}
+        output: {type: object}
+        error: {type: string}
+        trace_id: {type: string}
+    AuthExchangeRequest:
+      type: object
+      required: [agent_identity, session_id]
+      properties:
+        agent_identity: {type: string}
+        scope: {type: string}
+        session_id: {type: string}
+    AuthExchangeResponse:
+      type: object
+      properties:
+        access_token: {type: string}
+        token_type: {type: string}
+        expires_in: {type: integer}
+        scope: {type: string}
+        session_id: {type: string}
+    ErrorResponse:
+      type: object
+      properties:
+        detail: {type: string}
+        error_code: {type: string}

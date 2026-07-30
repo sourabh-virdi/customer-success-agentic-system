@@ -1,0 +1,214 @@
+[
+  {
+    "name": "crm.create_account",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "company": {"type": "string"},
+        "plan": {"type": "string"},
+        "email": {"type": "string"}
+      },
+      "required": ["company", "plan"],
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "status": {"type": "string"},
+        "account_id": {"type": "string"}
+      },
+      "required": ["status", "account_id"]
+    },
+    "auth_scope": "crm:write",
+    "rate_limit": {"per_minute": 60},
+    "error_codes": ["ACCOUNT_EXISTS", "INVALID_PLAN"],
+    "sensitive_fields": ["email"]
+  },
+  {
+    "name": "crm.update_account",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "account_id": {"type": "string"},
+        "fields": {"type": "object"}
+      },
+      "required": ["account_id", "fields"],
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "status": {"type": "string"},
+        "updated_fields": {"type": "object"}
+      },
+      "required": ["status"]
+    },
+    "auth_scope": "crm:write",
+    "rate_limit": {"per_minute": 60},
+    "error_codes": ["NOT_FOUND"],
+    "sensitive_fields": []
+  },
+  {
+    "name": "crm.create_ticket",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "account_id": {"type": "string"},
+        "subject": {"type": "string"},
+        "priority": {"type": "string"}
+      },
+      "required": ["account_id", "subject"],
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "status": {"type": "string"},
+        "ticket_id": {"type": "string"}
+      },
+      "required": ["status", "ticket_id"]
+    },
+    "auth_scope": "crm:write",
+    "rate_limit": {"per_minute": 30},
+    "error_codes": ["NOT_FOUND"],
+    "sensitive_fields": []
+  },
+  {
+    "name": "billing.get_subscription",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "account_id": {"type": "string"}
+      },
+      "required": ["account_id"],
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "status": {"type": "string"},
+        "plan": {"type": "string"},
+        "renewal_date": {"type": "string"}
+      },
+      "required": ["status", "plan"]
+    },
+    "auth_scope": "billing:read",
+    "rate_limit": {"per_minute": 120},
+    "error_codes": ["NOT_FOUND"],
+    "sensitive_fields": []
+  },
+  {
+    "name": "billing.update_plan",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "account_id": {"type": "string"},
+        "plan": {"type": "string"}
+      },
+      "required": ["account_id", "plan"],
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "status": {"type": "string"},
+        "plan": {"type": "string"}
+      },
+      "required": ["status", "plan"]
+    },
+    "auth_scope": "billing:write",
+    "rate_limit": {"per_minute": 30},
+    "error_codes": ["INVALID_PLAN"],
+    "sensitive_fields": []
+  },
+  {
+    "name": "diagnostics.run",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "integration_id": {"type": "string"}
+      },
+      "required": ["integration_id"],
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "status": {"type": "string"},
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {"type": "string"},
+              "status": {"type": "string"}
+            }
+          }
+        },
+        "report_id": {"type": "string"}
+      },
+      "required": ["status", "checks"]
+    },
+    "auth_scope": "diagnostics:run",
+    "rate_limit": {"per_minute": 60},
+    "error_codes": ["INTEGRATION_NOT_FOUND"],
+    "sensitive_fields": ["webhook_url", "api_key"]
+  },
+  {
+    "name": "diagnostics.get_report",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "report_id": {"type": "string"}
+      },
+      "required": ["report_id"],
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "status": {"type": "string"},
+        "report_url": {"type": "string"},
+        "checks": {"type": "array"}
+      },
+      "required": ["status"]
+    },
+    "auth_scope": "diagnostics:read",
+    "rate_limit": {"per_minute": 120},
+    "error_codes": ["NOT_FOUND"],
+    "sensitive_fields": []
+  },
+  {
+    "name": "kb.search",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "query": {"type": "string"},
+        "limit": {"type": "integer"}
+      },
+      "required": ["query"],
+      "additionalProperties": false
+    },
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "status": {"type": "string"},
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {"type": "string"},
+              "snippet": {"type": "string"}
+            }
+          }
+        }
+      },
+      "required": ["status", "results"]
+    },
+    "auth_scope": "kb:read",
+    "rate_limit": {"per_minute": 200},
+    "error_codes": [],
+    "sensitive_fields": []
+  }
+]
