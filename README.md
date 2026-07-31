@@ -39,4 +39,4 @@ docker compose up
 
 - [Security Checklist](docs/security_checklist.md)
 - [Runbooks](docs/runbooks/)
-- [Technical Blog](docs/blog/)
+- [Technical Blog]
