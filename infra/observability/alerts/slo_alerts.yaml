@@ -1,0 +1,28 @@
+alerts:
+  - name: ToolErrorRateHigh
+    expr: rate(mcp_tool_calls_total{outcome="error"}[5m]) / rate(mcp_tool_calls_total[5m]) > 0.05
+    for: 5m
+    severity: critical
+    annotations:
+      summary: Tool error rate exceeds 5% for 5 minutes
+
+  - name: HallucinationRateHigh
+    expr: agent_hallucination_rate > 0.02
+    for: 10m
+    severity: warning
+    annotations:
+      summary: Hallucination rate exceeds 2% threshold
+
+  - name: LatencySLOBreach
+    expr: histogram_quantile(0.5, agent_request_latency) > 1.5
+    for: 5m
+    severity: warning
+    annotations:
+      summary: Median response latency exceeds 1.5s SLO
+
+  - name: MCPAvailability
+    expr: up{job="mcp-server"} == 0
+    for: 1m
+    severity: critical
+    annotations:
+      summary: MCP server unavailable - activate safe mode

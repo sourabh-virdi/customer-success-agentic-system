@@ -1,0 +1,18 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["runtime:InvokeLeaf", "memory:Read"],
+      "Resource": [
+        "arn:aws:agentcore:runtime/leaf/*",
+        "arn:aws:memory:aggregate/*"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["mcp:CallTool"],
+      "Resource": ["arn:aws:mcp:tools/crm.create_ticket"]
+    }
+  ]
+}

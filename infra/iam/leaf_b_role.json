@@ -1,0 +1,18 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["mcp:CallTool"],
+      "Resource": [
+        "arn:aws:mcp:tools/diagnostics.run",
+        "arn:aws:mcp:tools/diagnostics.get_report"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["memory:Write"],
+      "Resource": ["arn:aws:memory:diagnostic/*"]
+    }
+  ]
+}

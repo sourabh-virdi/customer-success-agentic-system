@@ -1,0 +1,163 @@
+[
+  {
+    "name": "crm__create_account",
+    "description": "Tool: crm.create_account",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "company": {
+          "type": "string"
+        },
+        "plan": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "company",
+        "plan"
+      ],
+      "additionalProperties": false
+    },
+    "authScope": "crm:write"
+  },
+  {
+    "name": "crm__update_account",
+    "description": "Tool: crm.update_account",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string"
+        },
+        "fields": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "account_id",
+        "fields"
+      ],
+      "additionalProperties": false
+    },
+    "authScope": "crm:write"
+  },
+  {
+    "name": "crm__create_ticket",
+    "description": "Tool: crm.create_ticket",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "account_id",
+        "subject"
+      ],
+      "additionalProperties": false
+    },
+    "authScope": "crm:write"
+  },
+  {
+    "name": "billing__get_subscription",
+    "description": "Tool: billing.get_subscription",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "account_id"
+      ],
+      "additionalProperties": false
+    },
+    "authScope": "billing:read"
+  },
+  {
+    "name": "billing__update_plan",
+    "description": "Tool: billing.update_plan",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "account_id": {
+          "type": "string"
+        },
+        "plan": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "account_id",
+        "plan"
+      ],
+      "additionalProperties": false
+    },
+    "authScope": "billing:write"
+  },
+  {
+    "name": "diagnostics__run",
+    "description": "Tool: diagnostics.run",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "integration_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "integration_id"
+      ],
+      "additionalProperties": false
+    },
+    "authScope": "diagnostics:run"
+  },
+  {
+    "name": "diagnostics__get_report",
+    "description": "Tool: diagnostics.get_report",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "report_id": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "report_id"
+      ],
+      "additionalProperties": false
+    },
+    "authScope": "diagnostics:read"
+  },
+  {
+    "name": "kb__search",
+    "description": "Tool: kb.search",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "additionalProperties": false
+    },
+    "authScope": "kb:read"
+  }
+]

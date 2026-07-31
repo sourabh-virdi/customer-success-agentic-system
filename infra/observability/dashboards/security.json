@@ -1,0 +1,25 @@
+{
+  "title": "CS Agent System - Security Dashboard",
+  "panels": [
+    {
+      "title": "PII Redaction Failures",
+      "type": "graph",
+      "targets": [{"expr": "pii_redaction_failures_total"}]
+    },
+    {
+      "title": "Unauthorized Access Attempts",
+      "type": "stat",
+      "targets": [{"expr": "unauthorized_access_total"}]
+    },
+    {
+      "title": "Prompt Injection Blocks",
+      "type": "graph",
+      "targets": [{"expr": "prompt_injection_blocks_total"}]
+    },
+    {
+      "title": "Audit Log Volume",
+      "type": "graph",
+      "targets": [{"expr": "rate(audit_log_entries_total[5m])"}]
+    }
+  ]
+}

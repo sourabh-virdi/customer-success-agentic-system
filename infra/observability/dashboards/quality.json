@@ -1,0 +1,26 @@
+{
+  "title": "CS Agent System - Quality Dashboard",
+  "panels": [
+    {
+      "title": "Hallucination Rate Trend",
+      "type": "graph",
+      "targets": [{"expr": "agent_hallucination_rate", "legend": "hallucination %"}]
+    },
+    {
+      "title": "Human Rating Average",
+      "type": "stat",
+      "targets": [{"expr": "avg(human_rating_correctness)"}]
+    },
+    {
+      "title": "Resolution Rate",
+      "type": "gauge",
+      "targets": [{"expr": "eval_resolution_rate"}],
+      "thresholds": [{"value": 0.8, "color": "green"}]
+    },
+    {
+      "title": "Escalation Appropriateness",
+      "type": "stat",
+      "targets": [{"expr": "eval_escalation_appropriateness"}]
+    }
+  ]
+}

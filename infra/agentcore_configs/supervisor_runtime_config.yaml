@@ -1,0 +1,6 @@
+session_isolation: true
+max_tool_calls_per_session: 20
+timeout_seconds: 120
+agent_role: supervisor
+memory_id: ${AGENTCORE_MEMORY_ID}
+gateway_url: ${AGENTCORE_GATEWAY_URL}

@@ -1,0 +1,18 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["mcp:CallTool"],
+      "Resource": [
+        "arn:aws:mcp:tools/crm.create_account",
+        "arn:aws:mcp:tools/crm.update_account"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["memory:Write"],
+      "Resource": ["arn:aws:memory:profile/*"]
+    }
+  ]
+}

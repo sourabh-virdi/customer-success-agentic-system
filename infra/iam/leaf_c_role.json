@@ -1,0 +1,18 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["mcp:CallTool"],
+      "Resource": [
+        "arn:aws:mcp:tools/billing.get_subscription",
+        "arn:aws:mcp:tools/crm.create_ticket"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["memory:Read"],
+      "Resource": ["arn:aws:memory:profile/*"]
+    }
+  ]
+}
