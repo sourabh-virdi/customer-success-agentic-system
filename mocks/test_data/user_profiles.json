@@ -1,0 +1,22 @@
+[
+  {
+    "id": "user:u-001",
+    "type": "profile",
+    "company": "Acme Inc",
+    "plan": "Pro",
+    "integrations": ["slack", "salesforce"],
+    "preferences": {"contact_time": "morning"},
+    "churn_score": 0.12,
+    "last_activity": "2026-06-28T10:00:00Z"
+  },
+  {
+    "id": "user:u-002",
+    "type": "profile",
+    "company": "Globex Corp",
+    "plan": "Enterprise",
+    "integrations": ["teams", "hubspot"],
+    "preferences": {"contact_time": "afternoon"},
+    "churn_score": 0.78,
+    "last_activity": "2026-06-20T14:30:00Z"
+  }
+]

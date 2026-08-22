@@ -1,0 +1,13 @@
+[
+  {
+    "id": "session:s-001",
+    "type": "session",
+    "user_id": "u-001",
+    "turns": [
+      {"role": "user", "text": "I need help setting up my account", "timestamp": "2026-06-28T09:00:00Z"},
+      {"role": "agent", "text": "I can help with onboarding.", "timestamp": "2026-06-28T09:00:05Z"}
+    ],
+    "last_updated": "2026-06-28T09:00:05Z",
+    "redaction_mask": ["email"]
+  }
+]

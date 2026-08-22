@@ -1,0 +1,13 @@
+[
+  {
+    "id": "diag:diag-001",
+    "type": "diagnostic",
+    "integration_id": "int-123",
+    "status": "failed",
+    "checks": [
+      {"name": "auth", "status": "ok"},
+      {"name": "webhook", "status": "fail"}
+    ],
+    "report_url": "https://internal/reports/diag-001"
+  }
+]

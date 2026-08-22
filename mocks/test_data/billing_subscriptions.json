@@ -1,0 +1,14 @@
+[
+  {
+    "account_id": "acc-demo-001",
+    "plan": "Pro",
+    "renewal_date": "2026-12-01",
+    "mrr": 299.0
+  },
+  {
+    "account_id": "acc-demo-002",
+    "plan": "Enterprise",
+    "renewal_date": "2026-06-15",
+    "mrr": 1999.0
+  }
+]

@@ -1,0 +1,53 @@
+services:
+  mcp:
+    build:
+      context: .
+      dockerfile: mcp/Dockerfile
+    ports: ["8000:8000"]
+    environment:
+      CRM_MOCK_URL: http://crm:8010
+      BILLING_MOCK_URL: http://billing:8011
+      DIAGNOSTICS_MOCK_URL: http://diagnostics:8012
+    depends_on: [crm, billing, diagnostics]
+
+  memory:
+    image: python:3.11-slim
+    working_dir: /app
+    command: uvicorn memory.api.main:app --host 0.0.0.0 --port 8001
+    volumes: [".:/app"]
+    ports: ["8001:8001"]
+    environment:
+      PYTHONPATH: agents/shared:memory/api
+
+  crm:
+    image: python:3.11-slim
+    working_dir: /app
+    command: uvicorn mocks.crm.main:app --host 0.0.0.0 --port 8010
+    volumes: [".:/app"]
+    ports: ["8010:8010"]
+
+  billing:
+    image: python:3.11-slim
+    working_dir: /app
+    command: uvicorn mocks.billing.main:app --host 0.0.0.0 --port 8011
+    volumes: [".:/app"]
+    ports: ["8011:8011"]
+
+  diagnostics:
+    image: python:3.11-slim
+    working_dir: /app
+    command: uvicorn mocks.diagnostics.main:app --host 0.0.0.0 --port 8012
+    volumes: [".:/app"]
+    ports: ["8012:8012"]
+
+  supervisor:
+    image: python:3.11-slim
+    working_dir: /app/agents/supervisor/src
+    command: sh -c "pip install -q -r /app/requirements.txt && uvicorn main:app --host 0.0.0.0 --port 8020"
+    volumes: [".:/app"]
+    ports: ["8020:8020"]
+    environment:
+      PYTHONPATH: /app/agents/shared:/app/agents/supervisor/src
+      MCP_BASE_URL: http://mcp:8000
+      MEMORY_API_URL: http://memory:8001
+    depends_on: [mcp, memory]
