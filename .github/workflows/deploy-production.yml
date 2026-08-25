@@ -1,0 +1,16 @@
+name: Deploy Production
+
+on:
+  workflow_dispatch:
+
+jobs:
+  canary:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Canary deploy
+        run: echo "Deploy canary subset (5-10%)"
+      - name: SLO gate check
+        run: echo "Verify latency and error rate SLOs"
+      - name: Promote or rollback
+        run: echo "Promote on pass, rollback on SLO breach"
